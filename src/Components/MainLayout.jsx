@@ -1,11 +1,11 @@
 import React from 'react'
 import logo from '../assets/images/logoV.png'
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 
 export default function MainLayout() {
   return (
-    <div className='p-5'>
-      <div className='flex justify-between'>
+    <div>
+      <div className='flex justify-between p-5'>
         <div className='flex gap-10 items-center'>
           <img src={logo} alt='' className='h-10' />
           <NavLink to='/home' className={({ isActive }) => `font-medium text-l ${isActive ? 'text-[#2d63ed]' : ''}`}>

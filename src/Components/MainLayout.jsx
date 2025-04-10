@@ -8,7 +8,7 @@ export default function MainLayout() {
       <div className='flex justify-between p-5'>
         <div className='flex gap-10 items-center'>
           <img src={logo} alt='' className='h-10' />
-          <NavLink to='/home' className={({ isActive }) => `font-medium text-l ${isActive ? 'text-[#2d63ed]' : ''}`}>
+          <NavLink to='/' className={({ isActive }) => `font-medium text-l ${isActive ? 'text-[#2d63ed]' : ''}`}>
             Trang chủ
           </NavLink>
           <NavLink to='/product' className={({ isActive }) => `font-medium text-l ${isActive ? 'text-[#2d63ed]' : ''}`}>

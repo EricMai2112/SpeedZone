@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import vf9 from '../../assets/images/vf91.png'
 import Footer from '../Footer'
+import { useNavigate } from 'react-router-dom'
 
 export default function Product() {
   const apiCar = 'https://67e227a797fc65f53534c8a2.mockapi.io/apiTodo/cars'
+  const navigate = useNavigate()
 
   const [dataCar, setDataCar] = useState([])
 
@@ -14,6 +16,11 @@ export default function Product() {
       })
       .then((data) => setDataCar(data))
   }, [])
+
+  const handleClick = (item) => {
+    console.log(item)
+    navigate(`/product/${item.id}`, { state: { product: item } })
+  }
 
   return (
     <div className='mt-36 flex flex-col items-center justify-center'>
@@ -34,8 +41,10 @@ export default function Product() {
               <h3 className='font-medium'>{item.name}</h3>
               <h2>{item.price}</h2>
               <img
-                src={item.image}
+                src={item.image[0]}
                 className='p-3 object-cover transform transition-transform duration-300 hover:scale-110'
+                alt={item.name}
+                onClick={() => handleClick(item)}
               />
               <div className='flex gap-5'>
                 <button className='border rounded-md p-2 text-white bg-[#2d63ed] font-medium'>Đăng ký lái thử</button>

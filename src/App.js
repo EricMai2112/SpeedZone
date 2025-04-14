@@ -4,6 +4,7 @@ import Login from './Components/Login'
 import MainLayout from './Components/MainLayout'
 import logo from './logo.svg'
 import Product from './Components/Products/Product'
+import CarDetail from './Components/Products/CarDetail'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path='/' element={<MainLayout />}>
           <Route path='/' element={<Home />}></Route>
           <Route path='/product' element={<Product />}></Route>
+          <Route path='/product/:id' element={<CarDetail />}></Route>
         </Route>
       </Routes>
     </div>

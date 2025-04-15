@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
+import check from '../../assets/images/check.png'
 
 const FormRegister = forwardRef((props, ref) => {
   const [formData, setFormData] = useState({
@@ -7,6 +8,24 @@ const FormRegister = forwardRef((props, ref) => {
     phone: '',
     email: ''
   })
+
+  const [modal, setModal] = useState({ isOpen: false, message: '' })
+
+  const Modal = ({ isOpen, onClose, message }) => {
+    if (!isOpen) return null
+    return (
+      <div className='fixed inset-0 bg-black bg-opacity-50 flex p-5 flex-col justify-center items-center'>
+        <img src={check} alt='' className='w-28' />
+        <span className='font-medium mt-5 text-white'>{message}</span>
+        <span className='italic font-thin mb-5 text-white'>
+          Chúng tôi sẽ liên hệ bạn trong thời gian ngắn nhất, xin trân trọng!
+        </span>
+        <button onClick={onClose} className='border rounded-sm font-medium bg-[#2d63ed] text-white p-2'>
+          Đóng
+        </button>
+      </div>
+    )
+  }
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -18,13 +37,16 @@ const FormRegister = forwardRef((props, ref) => {
     emailjs
       .send('service_et824kr', 'template_qf5kps6', formData, '2nlsApfBAPp7XzK6W')
       .then(() => {
-        alert('Gửi thành công!')
+        setModal({ isOpen: true, message: 'ĐĂNG KÝ NHẬN THÔNG TIN THÀNH CÔNG' })
         setFormData({ name: '', phone: '', email: '' })
       })
       .catch((error) => {
-        console.error('Lỗi khi gửi:', error)
-        alert('Đã có lỗi xảy ra')
+        setModal({ isOpen: true, message: 'ĐĂNG KÝ THẤT BẠI' })
       })
+  }
+
+  const closeModal = () => {
+    setModal({ isOpen: false, message: '' })
   }
 
   return (
@@ -61,6 +83,7 @@ const FormRegister = forwardRef((props, ref) => {
         />
         <button className='border p-3 rounded-lg bg-[#2d63ed] text-white font-medium text-xs'>ĐĂNG KÝ</button>
       </form>
+      <Modal isOpen={modal.isOpen} onClose={closeModal} message={modal.message} />
     </div>
   )
 })

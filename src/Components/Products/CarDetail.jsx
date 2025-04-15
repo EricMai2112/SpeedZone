@@ -62,7 +62,7 @@ export default function CarDetailPage() {
               </div>
             )
           })}
-          <img src={selectedCarColor ? selectedCarColor.image : car.color[0].image} alt='' />
+          <img src={selectedCarColor ? selectedCarColor.image : car.color[0].image} alt='' className='w-1/2' />
         </div>
       </div>
       <div className='mt-10 p-10 bg-[#eaeffd]'>

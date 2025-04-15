@@ -57,12 +57,6 @@ export default function MainLayout() {
               Thư viện
             </NavLink>
           </div>
-          <div className='flex gap-5 items-center'>
-            <button className='text-xl'>🔍</button>
-            <span>|</span>
-            <button className='font-medium'>Đăng nhập</button>
-            <button className='font-medium bg-[#2d63ed] text-white p-2 pr-4 pl-4 rounded-sm '>Đăng ký</button>
-          </div>
         </div>
       </div>
       <div>

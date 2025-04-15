@@ -34,9 +34,9 @@ export default function CarDetailPage() {
           </div>
           <span>____________________________________________________________________________</span>
           <div className='flex justify-between'>
-            <button className='border p-2 rounded-lg text-white bg-black font-medium'>📞 Zalo: 0837.000.222</button>
-            <button onClick={handleScrollToForm} className='border p-2 rounded-lg text-white bg-[#73d944] font-medium'>
-              Đăng ký lái thử
+            <button className='border p-2 rounded-lg text-white bg-black font-medium'>📞 Liên hệ</button>
+            <button onClick={handleScrollToForm} className='border p-2 rounded-lg text-white bg-[#2d63ed] font-medium'>
+              ✏️ Đăng ký lái thử
             </button>
           </div>
         </div>

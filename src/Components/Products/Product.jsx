@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import vf9 from '../../assets/images/vf91.png'
 import Footer from '../Footer'
 import { useNavigate } from 'react-router-dom'
+import FormRegister from './FormRegister'
 
 export default function Product() {
   const apiCar = 'https://67e227a797fc65f53534c8a2.mockapi.io/apiTodo/cars'
   const navigate = useNavigate()
+  const formRef = useRef(null)
+  const contactRef = useRef(null)
 
   const [dataCar, setDataCar] = useState([])
 
@@ -20,6 +23,14 @@ export default function Product() {
   const handleClick = (item) => {
     console.log(item)
     navigate(`/product/${item.id}`, { state: { product: item } })
+  }
+
+  const handleScrollToRegister = () => {
+    formRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const handleScrollToContact = () => {
+    contactRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
@@ -47,8 +58,16 @@ export default function Product() {
                 onClick={() => handleClick(item)}
               />
               <div className='flex gap-5'>
-                <button className='border rounded-md p-2 text-white bg-[#2d63ed] font-medium'>Đăng ký lái thử</button>
-                <button className='border rounded-md p-2 text-[#2d63ed] border-[#2d63ed] bg-[#fff] font-medium'>
+                <button
+                  onClick={handleScrollToRegister}
+                  className='border rounded-md p-2 text-white bg-[#2d63ed] font-medium'
+                >
+                  Đăng ký lái thử
+                </button>
+                <button
+                  onClick={handleScrollToContact}
+                  className='border rounded-md p-2 text-[#2d63ed] border-[#2d63ed] bg-[#fff] font-medium'
+                >
                   Liên hệ
                 </button>
               </div>
@@ -56,7 +75,8 @@ export default function Product() {
           )
         })}
       </div>
-      <Footer />
+      <FormRegister ref={formRef} />
+      <Footer ref={contactRef} />
     </div>
   )
 }

@@ -55,7 +55,7 @@ export default function News() {
           <div className='md:w-1/2 mb-8 md:mb-0'>
             <h1 className='text-3xl md:text-4xl font-bold mb-4'>VinFast News</h1>
             <p className='text-gray-600 mb-6'>
-              Discover the latest news and news from VinFast. Join us at our upcoming news and be part of the VinFast
+              Discover the latest events and news from VinFast. Join us at our upcoming news and be part of the VinFast
               community.
             </p>
             <div className='relative max-w-md'>

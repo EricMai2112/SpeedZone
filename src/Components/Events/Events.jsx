@@ -1,6 +1,5 @@
-'use client'
 import { useEffect, useRef, useState } from 'react'
-import vf9 from '../../assets/images/vf91.png'
+import event1 from '../../assets/images/event1.png'
 import Footer from '../Footer'
 import { useNavigate } from 'react-router-dom'
 
@@ -135,8 +134,8 @@ export default function Events() {
               </button>
             </div>
           </div>
-          <div className='md:w-1/2 flex justify-center'>
-            <img src={vf9 || '/placeholder.svg'} alt='VinFast VF9' className='max-w-full h-auto' />
+          <div className='w-full md:w-1/2 flex justify-center p-4'>
+            <img src={event1 || '/placeholder.svg'} alt='VinFast Events' className='w-full h-auto rounded-md shadow' />
           </div>
         </div>
       </div>
@@ -213,13 +212,6 @@ export default function Events() {
           ))
         )}
       </div>
-
-      {/* Registration Form */}
-      {showRegisterForm && selectedEvent && (
-        <div ref={formRef} className='container mx-auto px-4 py-8 bg-gray-50 rounded-lg my-8'>
-          <h2 className='text-2xl font-bold mb-6'>Đăng ký tham gia sự kiện: {selectedEvent.title}</h2>
-        </div>
-      )}
       <Footer />
     </div>
   )

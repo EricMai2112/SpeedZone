@@ -1,20 +1,30 @@
 import { User } from 'lucide-react'
 
-export default function NewsCard({ image, title, description, author, date, createdAt }) {
+export default function NewsCard({ image, title, description, author, date, createdAt, user }) {
   // Format the date if createdAt is provided (from API)
   const formattedDate = createdAt ? formatTimeAgo(new Date(createdAt)) : date
 
   return (
-    <div className='bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow'>
+    <div className='bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border-2 border-gray-300'>
       <img src={image || '/placeholder.svg'} alt={title} className='w-full h-48 object-cover' />
       <div className='p-4'>
         <h3 className='font-medium text-base mb-2 line-clamp-2 h-12'>{title}</h3>
         <p className='text-sm text-gray-600 mb-4 line-clamp-3 h-16'>{description}</p>
+
+        {/* 👇 thay icon người bằng ảnh user */}
         <div className='flex items-center text-xs text-gray-500'>
           <div className='flex items-center'>
-            <div className='w-5 h-5 bg-gray-200 rounded-full flex items-center justify-center mr-1'>
-              <User size={12} />
-            </div>
+            {user ? (
+              <img
+                src={user}
+                alt={author}
+                className='w-5 h-5 rounded-full mr-1 object-cover' // 👈 dùng ảnh user từ props
+              />
+            ) : (
+              <div className='w-5 h-5 bg-gray-200 rounded-full flex items-center justify-center mr-1'>
+                <User size={12} />
+              </div>
+            )}
             <span className='font-medium'>{author}</span>
           </div>
           <span className='mx-2'>•</span>

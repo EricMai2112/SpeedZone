@@ -9,10 +9,11 @@ export default function NewsGrid({ newsItems, viewMode }) {
         {newsItems.map((item) => (
           <NewsCard
             key={item.id}
-            image={item.avatar || item.image}
+            image={item.avatar}
+            user={item.imagePulisher}
             title={item.title || item.name}
             description={item.description || item.content}
-            author={item.author || 'Admin'}
+            author={item.author || item.pulisher}
             createdAt={item.createdAt}
             date={item.date}
           />

@@ -176,7 +176,7 @@ export default function Events() {
                 {group.events.map((event) => (
                   <div
                     key={event.id}
-                    className='bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer'
+                    className='bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-gray-300'
                     onClick={() => handleEventClick(event)}
                   >
                     <div className='relative h-48'>
@@ -195,7 +195,7 @@ export default function Events() {
                       <div className='flex items-center justify-between text-xs text-gray-500'>
                         <span>{formatDate(event.date)}</span>
                         <button
-                          className='bg-blue-500 text-white px-3 py-1 p-3 rounded text-sm hover:bg-blue-600'
+                          className='bg-blue-500 text-white px-5 py-2 rounded text-base font-medium hover:bg-blue-600'
                           onClick={(e) => {
                             e.stopPropagation()
                             handleRegisterClick(event)

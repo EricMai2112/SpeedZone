@@ -5,7 +5,7 @@ export default function NewsCard({ image, title, description, author, date, crea
   const formattedDate = createdAt ? formatTimeAgo(new Date(createdAt)) : date
 
   return (
-    <div className='bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow'>
+    <div className='bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border-2 border-gray-300'>
       <img src={image || '/placeholder.svg'} alt={title} className='w-full h-48 object-cover' />
       <div className='p-4'>
         <h3 className='font-medium text-base mb-2 line-clamp-2 h-12'>{title}</h3>

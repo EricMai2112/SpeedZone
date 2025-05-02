@@ -46,24 +46,34 @@ export default function NewsDetail() {
       // Nếu không có state, thử fetch từ API
       const fetchNewsDetail = async () => {
         try {
-          const response = await fetch(`https://67f85e102466325443ec7f89.mockapi.io/news/${id}`)
+          // Hiển thị URL đang gọi để debug
+          const apiUrl = `https://67f85e102466325443ec7f89.mockapi.io/news/${id}`
+          console.log('Đang gọi API:', apiUrl)
+
+          const response = await fetch(apiUrl)
+          console.log('Trạng thái response:', response.status)
+
           if (!response.ok) {
+            console.error('Lỗi API:', response.status, response.statusText)
             // Nếu API không thành công, dùng dữ liệu tĩnh
             if (fallbackNewsData[id]) {
               setNews(fallbackNewsData[id])
             } else {
-              throw new Error('Không thể lấy dữ liệu bài viết')
+              throw new Error(`API trả về lỗi: ${response.status} ${response.statusText}`)
             }
           } else {
             const data = await response.json()
+            console.log('Dữ liệu nhận được:', data)
             setNews(data)
           }
         } catch (error) {
+          console.error('Lỗi khi fetch dữ liệu:', error.message)
           // Nếu có lỗi trong quá trình fetch, thử dùng dữ liệu tĩnh
           if (fallbackNewsData[id]) {
+            console.log('Sử dụng dữ liệu fallback do lỗi fetch')
             setNews(fallbackNewsData[id])
           } else {
-            setError('Không tìm thấy bài viết. Vui lòng kiểm tra lại ID.')
+            setError(`Không thể lấy dữ liệu: ${error.message}`)
           }
         } finally {
           setLoading(false)
@@ -88,21 +98,34 @@ export default function NewsDetail() {
 
   return (
     <div className='mt-36'>
-      <div className='flex flex-col md:flex-row justify-between m-8 md:m-40 gap-10'>
+      <div className='flex flex-col md:flex-row justify-between m-8 md:m-20 gap-10'>
         <img
           src={news.avatar || news.image || 'https://via.placeholder.com/800x400'}
           alt={news.title}
-          className='w-full md:w-2/4 object-cover rounded-lg h-64 md:h-auto'
+          className='w-full md:w-2/4 object-cover rounded-lg h-64 md:h-auto shadow-md'
         />
-        <div className='flex flex-col gap-10 border p-4 w-full md:w-2/4 rounded-lg shadow-lg'>
+
+        <div className='flex flex-col gap-6 border p-6 w-full md:w-2/4 rounded-lg shadow-lg bg-white'>
           <h2 className='font-medium text-2xl text-center'>{news.title || news.name}</h2>
-          <div className='flex justify-between'>
-            <span>Nội dung</span>
-            <span>{news.author || news.pulisher}</span>
+
+          <div className='flex flex-col md:flex-row justify-between gap-4'>
+            <span className='text-gray-500 text-sm'>Chuyên mục: {news.category || 'Tin tức'}</span>
+            <span className='text-gray-500 text-sm'>Tác giả: {news.author || news.pulisher || 'Không xác định'}</span>
           </div>
-          <div className='mt-4'>
-            <p>{news.content || news.description}</p>
+
+          <div className='prose max-w-none'>
+            <p className='text-gray-700 leading-relaxed'>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+              scrambled it to make a type specimen book.
+            </p>
+            <p className='text-gray-700 mt-4 leading-relaxed'>{news.content || news.description}</p>
           </div>
+
+          {/* <div className='mt-4 text-sm text-gray-500 flex justify-between'>
+            <span>Ngày đăng: {news.date || 'Không xác định'}</span>
+            <span>Lượt xem: {news.views || '0'}</span>
+          </div> */}
         </div>
       </div>
 

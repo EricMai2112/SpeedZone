@@ -1,0 +1,28 @@
+// NewsListPage.jsx
+import { Link } from 'react-router-dom'
+
+export default function NewsListPage() {
+  const newsItem = {
+    image: '/vinfast.jpg',
+    title: 'Vinfast dừng bán xe điện thuê pin',
+    description: 'VinFast chính thức dừng chương trình thuê pin từ tháng 5...',
+    author: 'Nguyễn Văn A',
+    createdAt: new Date().toISOString(),
+    user: '/avatar.jpg',
+  }
+
+  return (
+    <div className='p-4'>
+      <h2 className='text-2xl font-bold mb-4'>Tin tức</h2>
+      <Link
+        to="/news-detail"
+        state={newsItem}
+        className='block p-4 border rounded-lg hover:shadow-lg transition'
+      >
+        <img src={newsItem.image} alt={newsItem.title} className='w-full h-48 object-cover rounded mb-2' />
+        <h3 className='text-xl font-semibold'>{newsItem.title}</h3>
+        <p className='text-gray-600 text-sm mt-1'>{newsItem.description}</p>
+      </Link>
+    </div>
+  )
+}

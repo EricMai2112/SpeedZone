@@ -9,6 +9,7 @@ export default function NewsGrid({ newsItems, viewMode }) {
         {newsItems.map((item) => (
           <NewsCard
             key={item.id}
+            slug={item.id} // Thêm slug/id cho điều hướng
             image={item.avatar}
             user={item.imagePulisher}
             title={item.title || item.name}
@@ -16,6 +17,7 @@ export default function NewsGrid({ newsItems, viewMode }) {
             author={item.author || item.pulisher}
             createdAt={item.createdAt}
             date={item.date}
+            article={item} // Truyền toàn bộ item để lưu vào state
           />
         ))}
       </div>

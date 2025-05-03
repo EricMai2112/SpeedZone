@@ -59,6 +59,12 @@ export default function Events() {
     navigate(`/event/${event.id}`, { state: { event } })
   }
 
+  const handleViewMore = (event, e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    handleEventClick(event)
+  }
+
   const handleRegisterClick = (event) => {
     setSelectedEvent(event)
     setShowRegisterForm(true)
@@ -194,15 +200,12 @@ export default function Events() {
                       {event.content && <p className='text-xs text-gray-600 mb-2 line-clamp-2'>{event.content}</p>}
                       <div className='flex items-center justify-between text-xs text-gray-500'>
                         <span>{formatDate(event.date)}</span>
-                        <a
-                          href='https://vinfast.vn/su-kien/offline-trung-bay-dan-xe-vf-3-sang-tao-chat-rieng/'
-                          target='_blank'
-                          rel='noopener noreferrer'
-                          onClick={(e) => e.stopPropagation()}
+                        <button
+                          onClick={(e) => handleViewMore(event, e)}
                           className='bg-blue-500 text-white px-5 py-2 rounded text-base font-medium hover:bg-blue-600 inline-block text-center'
                         >
                           Xem thêm
-                        </a>
+                        </button>
                       </div>
                     </div>
                   </div>

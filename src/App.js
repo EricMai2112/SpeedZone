@@ -9,6 +9,8 @@ import Events from './Components/Events/Events'
 import News from './Components/News/News'
 import Libraries from './Components/library/Libraries'
 import NewsDetail from './Components/News/NewsDetail'
+import EventsDetail from './Components/Events/EventsDetail'
+
 
 function App() {
   return (
@@ -18,9 +20,10 @@ function App() {
           <Route path='/' element={<Home />}></Route>
           <Route path='/product' element={<Product />}></Route>
           <Route path='/product/:id' element={<CarDetail />}></Route>
-          <Route path='/events' element={<Events/>}></Route>
           <Route path="/news" element={<News />} />
-        <Route path="/news/:id" element={<NewsDetail />} />
+          <Route path="/news/:id" element={<NewsDetail />} />
+           <Route path="/events" element={<Events />} />
+           <Route path="/event/:id" element={<EventsDetail />} />
           <Route path='/library' element={<Libraries/>}></Route>
         </Route>
         <Route path='/login' element={<Login />}></Route>

@@ -20,19 +20,13 @@ export default function Events() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        setLoading(true)
-        const response = await fetch(apiNews)
-        if (!response.ok) throw new Error(`API responded with status: ${response.status}`)
-        const data = await response.json()
-        const sortedData = data.sort((a, b) => new Date(b.date) - new Date(a.date))
-
-        setEvents(sortedData)
-        setFilteredEvents(sortedData)
-
-        setLoading(false)
+        const res = await fetch('https://67e227a797fc65f53534c8a2.mockapi.io/apiTodo/events')
+        if (!res.ok) throw new Error('Lỗi khi tải dữ liệu sự kiện')
+        const data = await res.json()
+        setEvents(data)
       } catch (err) {
-        console.error('Error fetching events:', err)
         setError(err.message)
+      } finally {
         setLoading(false)
       }
     }
@@ -63,14 +57,6 @@ export default function Events() {
     e.preventDefault()
     e.stopPropagation()
     handleEventClick(event)
-  }
-
-  const handleRegisterClick = (event) => {
-    setSelectedEvent(event)
-    setShowRegisterForm(true)
-    setTimeout(() => {
-      formRef.current?.scrollIntoView({ behavior: 'smooth' })
-    }, 100)
   }
 
   const groupEventsByMonth = (events) => {
